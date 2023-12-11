@@ -1,11 +1,37 @@
-class Figure {
+interface IFigure {
+  name: string;
+  colorName: string;
+  calculateArea(): number;
+}
+interface ICircle extends IFigure {
+  radius: number;
+}
+interface IRectangle extends IFigure {
+  length: number;
+  width: number;
+  print(): string;
+}
+interface ISquare extends IFigure {
+  side: number;
+  print(): string;
+}
+interface ITriangle extends IFigure {
+  basis: number;
+  height: number;
+}
+
+class Figure implements IFigure {
   constructor(
     readonly name: string,
     readonly colorName: string
   ) {}
+
+  public calculateArea(): number {
+    return undefined;
+  }
 }
 
-class Circle extends Figure {
+class Circle extends Figure implements ICircle {
   static readonly PI = 3.14;
   public radius: number;
 
@@ -19,7 +45,7 @@ class Circle extends Figure {
   }
 }
 
-class Rectangle extends Figure {
+class Rectangle extends Figure implements IRectangle {
   public length: number;
   public width: number;
 
@@ -38,7 +64,7 @@ class Rectangle extends Figure {
   }
 }
 
-class Square extends Figure {
+class Square extends Figure implements ISquare {
   side: number;
 
   constructor(side: number, colorName: string) {
@@ -55,7 +81,7 @@ class Square extends Figure {
   }
 }
 
-class Triangle extends Figure {
+class Triangle extends Figure implements ITriangle {
   public basis: number;
   public height: number;
 
